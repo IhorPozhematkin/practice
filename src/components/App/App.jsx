@@ -70,37 +70,112 @@
 
 // export default App;
 
+// import { Component } from 'react';
+// import TodoList from 'components/TodoList';
+// import TodoEditor from 'components/TodoEditor';
+// import shortid from 'shortid';
+// import Filter from 'components/Filter';
+
+// class App extends Component {
+//   state = {
+//     todos: [
+//       { id: 'id-1', text: 'Выучить React', completed: true },
+//       { id: 'id-2', text: 'Выучить Node.js', completed: false },
+//     ],
+//     filter: '',
+//   };
+
+//   addTodo = text => {
+//     const todo = {
+//       id: shortid.generate(),
+//       text,
+//       completed: false,
+//     };
+
+//     this.setState(prevState => ({ todos: [todo, ...prevState.todos] }));
+//   };
+
+//   deleteTodo = todoId => {
+//     this.setState(prevState => ({
+//       todos: prevState.todos.filter(todo => todo.id !== todoId),
+//     }));
+//   };
+
+//   toggleCompleted = todoId => {
+//     this.setState(prevState => ({
+//       todos: prevState.todos.map(todo =>
+//         todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+//       ),
+//     }));
+//   };
+//   changeFilter = e => {
+//     this.setState({ filter: e.currentTarget.value });
+//   };
+
+//   getVisibleTodos = () => {
+//     const { filter, todos } = this.state;
+
+//     const normalisedFilter = filter.toLowerCase();
+//     return todos.filter(todo =>
+//       todo.text.toLowerCase().includes(normalisedFilter)
+//     );
+//   };
+
+//   calculateCompletedTodos = () => {
+//     const { todos } = this.state;
+//     return todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
+//   };
+//   render() {
+//     const { todos, filter } = this.state;
+//     const completedTodos = this.calculateCompletedTodos();
+//     const visibleTodos = this.getVisibleTodos();
+
+//     return (
+//       <>
+//         <span>Обшее кол-во: {todos.length}</span>
+//         <span>Кол-во выполненных: {completedTodos}</span>
+//         <TodoEditor onSubmit={this.addTodo} />
+//         <Filter value={filter} onChange={this.changeFilter} />
+//         <TodoList
+//           todos={visibleTodos}
+//           onDeleteTodo={this.deleteTodo}
+//           onToggleCompleted={this.toggleCompleted}
+//         />
+//       </>
+//     );
+//   }
+// }
+
+// export default App;
+
+// import Form from 'components/Form';
+// import { Component } from 'react';
+
+// class App extends Component {
+//   formSubmitHandler = data => {
+//     console.log(data);
+//   };
+//   render() {
+//     return (
+//       <>
+//         <Form onSubmit={this.formSubmitHandler} />
+//         <Form onSubmit={this.formSubmitHandler} />
+//       </>
+//     );
+//   }
+// }
+
+// export default App;
+
 import { Component } from 'react';
-import TodoList from 'components/TodoList';
+import { LoginForm } from 'components/LoginForm/LoginForm';
 
-class App extends Component {
-  state = {
-    todos: [
-      { id: 'id-1', text: 'Выучить React', completed: true },
-      { id: 'id-2', text: 'Выучить Node.js', completed: false },
-    ],
-  };
-
-  deleteTodo = todoId => {
-    this.setState(prevState => ({
-      todos: prevState.todos.filter(todo => todo.id !== todoId),
-    }));
-  };
+export class App extends Component {
   render() {
-    const { todos } = this.state;
-
-    const completedTodos = todos.reduce(
-      (acc, todo) => (todo.completed ? acc + 1 : acc),
-      0
-    );
     return (
       <>
-        <span>Обшее кол-во: {todos.length}</span>
-        <span>Кол-во выполненных: {completedTodos}</span>
-        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
+        <LoginForm />
       </>
     );
   }
 }
-
-export default App;
