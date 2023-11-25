@@ -1,6 +1,6 @@
-// import paintings from './../painting.json';
-// import PaintingList from './PaintingList/PaintingList';
-// import Section from './Section/Section';
+// import paintings from './../../painting';
+// import PaintingList from 'components/PaintingList/PaintingList';
+// import Section from 'components/Section/Section';
 
 // export const App = () => {
 //   return (
@@ -15,10 +15,10 @@
 
 // import { PageTitle } from 'components/PageTitle/PageTitle';
 // import { EventBoard } from 'components/EventBoard/EventBoard';
-// import upcomming from './../../upcomming-events';
-// import { Container } from './App.styled';
+// import upcomming from 'upcomming-events';
+// import { Container } from 'components/App/App.styled';
 // import { ThemeProvider } from '@emotion/react';
-// import { theme } from './../../constans';
+// import { theme } from 'constans';
 
 // export const App = () => {
 //   return (
@@ -78,10 +78,7 @@
 
 // class App extends Component {
 //   state = {
-//     todos: [
-//       { id: 'id-1', text: 'Выучить React', completed: true },
-//       { id: 'id-2', text: 'Выучить Node.js', completed: false },
-//     ],
+//     todos: [],
 //     filter: '',
 //   };
 
@@ -125,6 +122,19 @@
 //     const { todos } = this.state;
 //     return todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
 //   };
+
+//   componentDidMount() {
+//     const parsedTodos = JSON.parse(localStorage.getItem('todos'));
+
+//     if (parsedTodos) {
+//       this.setState({ todos: parsedTodos });
+//     }
+//   }
+//   componentDidUpdate(prevProps, prevState) {
+//     if (this.state.todos !== prevState.todos) {
+//       localStorage.setItem('todos', JSON.stringify(this.state.todos));
+//     }
+//   }
 //   render() {
 //     const { todos, filter } = this.state;
 //     const completedTodos = this.calculateCompletedTodos();
@@ -167,15 +177,49 @@
 
 // export default App;
 
-import { Component } from 'react';
-import { LoginForm } from 'components/LoginForm/LoginForm';
+// import { Component } from 'react';
+// import { LoginForm } from 'components/LoginForm/LoginForm';
 
-export class App extends Component {
+// export class App extends Component {
+//   render() {
+//     return (
+//       <>
+//         <LoginForm />
+//       </>
+//     );
+//   }
+// }
+
+import Modal from 'components/Modal';
+import { Component } from 'react';
+
+class App extends Component {
+  state = {
+    showModal: false,
+  };
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
   render() {
     return (
       <>
-        <LoginForm />
+        <button type="button" onClick={this.toggleModal}>
+          Открыть
+        </button>
+        {this.state.showModal && (
+          <Modal onClose={this.toggleModal}>
+            <h1>Привет!</h1>
+            <p>Это модалка</p>
+            <button type="button" onClick={this.toggleModal}>
+              Закрыть
+            </button>
+          </Modal>
+        )}
       </>
     );
   }
 }
+
+export default App;
