@@ -8,3 +8,4 @@ https://www.npmjs.com/package/classnames
 https://formik.org/
 https://react-hook-form.com/
 https://www.npmjs.com/package/yup
+https://fkhadra.github.io/react-toastify/introduction
