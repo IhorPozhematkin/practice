@@ -298,6 +298,23 @@
 //   }
 // }
 
+import PokemonForm from 'components/PokemonForm';
+import { ToastContainer } from 'react-toastify';
+import PokemonInfo from 'components/PokemonInfo';
+import { useState } from 'react';
+
+export default function App() {
+  const [pokemonName, setPokemonName] = useState('');
+
+  return (
+    <>
+      <PokemonForm onSubmit={setPokemonName} />
+      <PokemonInfo pokemonName={pokemonName} />
+      <ToastContainer autoClose={3000} />
+    </>
+  );
+}
+
 // import { Switch, Route } from 'react-router-dom';
 // import SignUpForm from 'components/SignUpForm';
 // import ColorPicker from 'components/ColorPicker';
@@ -312,40 +329,40 @@
 //   { label: 'indigo', color: '#3F51B5' },
 // ];
 
-const containerStyles = {
-  maxWidth: 1170,
-  marginLeft: 'auto',
-  marginRight: 'auto',
-  paddingLeft: 15,
-  paddingRight: 15,
-};
+// const containerStyles = {
+//   maxWidth: 1170,
+//   marginLeft: 'auto',
+//   marginRight: 'auto',
+//   paddingLeft: 15,
+//   paddingRight: 15,
+// };
 
-export default function App() {
-  return (
-    <div style={containerStyles}>
-      {/* <AppBar /> */}
+// export default function App() {
+//   return (
+//     <div style={containerStyles}>
+//       {/* <AppBar /> */}
 
-      {/* <Switch> */}
-      {/* <Route path="/signup"> */}
-      {/* <SignUpForm /> */}
-      {/* </Route> */}
+//       {/* <Switch> */}
+//       {/* <Route path="/signup"> */}
+//       {/* <SignUpForm /> */}
+//       {/* </Route> */}
 
-      {/* <Route path="/colorpicker"> */}
-      {/* <ColorPicker options={colorPickerOptions} /> */}
-      {/* </Route> */}
+//       {/* <Route path="/colorpicker"> */}
+//       {/* <ColorPicker options={colorPickerOptions} /> */}
+//       {/* </Route> */}
 
-      {/* <Route path="/counter">
-          <Counter />
-        </Route>
+//       {/* <Route path="/counter">
+//           <Counter />
+//         </Route>
 
-        <Route path="/clock"> */}
-      {/* <Clock /> */}
-      {/* </Route>
+//         <Route path="/clock"> */}
+//       {/* <Clock /> */}
+//       {/* </Route>
 
-        <Route path="/pokemon">
-          <PokemonView />
-        </Route> */}
-      {/* </Switch> */}
-    </div>
-  );
-}
+//         <Route path="/pokemon">
+//           <PokemonView />
+//         </Route> */}
+//       {/* </Switch> */}
+//     </div>
+//   );
+// }
