@@ -9,3 +9,5 @@ https://formik.org/
 https://react-hook-form.com/
 https://www.npmjs.com/package/yup
 https://fkhadra.github.io/react-toastify/introduction
+https://www.npmjs.com/package/react-query
+https://github.com/streamich/react-use

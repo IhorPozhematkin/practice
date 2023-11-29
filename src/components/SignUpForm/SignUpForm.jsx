@@ -43,11 +43,28 @@
 // export default SignUpForm;
 
 import styles from './SignUpForm.module.css';
-import { useState } from 'react';
+// import { useState, useEffect } from 'react';
+import useLocalStorage from 'hooks/useLocalStorage';
+
+// export default function SignUpForm() {
+//   const [email, setEmail] = useState(
+//     () => JSON.parse(window.localStorage.getItem('email')) ?? ''
+//   );
+//   const [password, setPassword] = useState(
+//     () => JSON.parse(window.localStorage.getItem('password')) ?? ''
+//   );
+
+//   useEffect(() => {
+//     window.localStorage.setItem('email', JSON.stringify(email));
+//   }, [email]);
+
+//   useEffect(() => {
+//     window.localStorage.setItem('password', JSON.stringify(password));
+//   }, [password]);
 
 export default function SignUpForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useLocalStorage('email', '');
+  const [password, setPassword] = useLocalStorage('password', '');
 
   const handleChange = e => {
     const { name, value } = e.target;
