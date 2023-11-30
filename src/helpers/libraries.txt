@@ -11,3 +11,5 @@ https://www.npmjs.com/package/yup
 https://fkhadra.github.io/react-toastify/introduction
 https://www.npmjs.com/package/react-query
 https://github.com/streamich/react-use
+https://github.com/cookpete/react-player
+https://www.npmjs.com/package/react-infinite-scroller

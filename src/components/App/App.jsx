@@ -249,6 +249,58 @@
 // export default App;
 
 // import { Component } from 'react';
+// import VideoList from 'components/VideoList';
+// import Player from 'components/Player';
+// import videos from 'videos.json';
+
+// export class App extends Component {
+//   state = {
+//     selectedVideo: null,
+//   };
+
+//   selectVideo = link => {
+//     this.setState({ selectedVideo: link });
+//   };
+
+//   render() {
+//     return (
+//       <div style={{ padding: 24 }}>
+//         <h1>Selected video: {this.state.selectedVideo}</h1>
+//         <VideoList videos={videos} onSelect={this.selectVideo} />
+//         <Player url={this.state.selectedVideo} />
+//       </div>
+//     );
+//   }
+// }
+
+// import { Component } from 'react';
+// import Reader from 'components/Reader';
+// import publications from 'publications.json';
+
+// export default class App extends Component {
+//   render() {
+//     return (
+//       <div>
+//         <Reader items={publications} />
+//       </div>
+//     );
+//   }
+// }
+
+import { Component } from 'react';
+import { MaterialEditor } from 'MaterialEditor/MaterialEditor';
+
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <MaterialEditor />
+      </div>
+    );
+  }
+}
+
+// import { Component } from 'react';
 
 // export default class App extends Component {
 //   state = {
@@ -298,22 +350,22 @@
 //   }
 // }
 
-import PokemonForm from 'components/PokemonForm';
-import { ToastContainer } from 'react-toastify';
-import PokemonInfo from 'components/PokemonInfo';
-import { useState } from 'react';
+// import PokemonForm from 'components/PokemonForm';
+// import { ToastContainer } from 'react-toastify';
+// import PokemonInfo from 'components/PokemonInfo';
+// import { useState } from 'react';
 
-export default function App() {
-  const [pokemonName, setPokemonName] = useState('');
+// export default function App() {
+//   const [pokemonName, setPokemonName] = useState('');
 
-  return (
-    <>
-      <PokemonForm onSubmit={setPokemonName} />
-      <PokemonInfo pokemonName={pokemonName} />
-      <ToastContainer autoClose={3000} />
-    </>
-  );
-}
+//   return (
+//     <>
+//       <PokemonForm onSubmit={setPokemonName} />
+//       <PokemonInfo pokemonName={pokemonName} />
+//       <ToastContainer autoClose={3000} />
+//     </>
+//   );
+// }
 
 // import { Switch, Route } from 'react-router-dom';
 // import SignUpForm from 'components/SignUpForm';
