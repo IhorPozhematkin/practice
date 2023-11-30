@@ -288,14 +288,87 @@
 // }
 
 import { Component } from 'react';
-import { MaterialEditor } from 'MaterialEditor/MaterialEditor';
+import { MaterialEditor } from 'components/MaterialEditor/MaterialEditor';
+import * as API from 'helpers/api';
+import { MaterialList } from 'components/MaterialList/MaterialList';
 
 export default class App extends Component {
+  state = {
+    materials: [],
+    isLoading: false,
+    error: false,
+  };
+  async componentDidMount() {
+    try {
+      this.setState({ isLoading: true });
+      const materials = await API.getMaterials();
+      this.setState({ materials, isLoading: false });
+    } catch (error) {
+      this.setState({ error: true, isLoading: false });
+      console.log(error);
+    }
+  }
+
+  addMaterial = async values => {
+    try {
+      // this.setState({ isLoading: true }); Formik сам обрабатыает
+      const material = await API.addMaterial(values);
+      this.setState(state => ({
+        materials: [...state.materials, material],
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+    // finally {
+    //   this.setState({ isLoading: false });
+    // }
+  };
+
+  updateMaterial = async fields => {
+    try {
+      const updatedMaterial = await API.updateMaterial(fields);
+      this.setState(state => ({
+        materials: state.materials.map(material =>
+          material.id === fields.id ? updatedMaterial : material
+        ),
+      }));
+    } catch (error) {
+      this.setState({ error: true });
+      console.log(error);
+    }
+  };
+
+  deleteMaterial = async id => {
+    try {
+      await API.deleteMaterial(id);
+      this.setState(state => ({
+        materials: state.materials.filter(material => material.id !== id),
+      }));
+    } catch (error) {
+      this.setState({ error: true });
+      console.log(error);
+    }
+  };
   render() {
+    const { isLoading, materials, error } = this.state;
     return (
-      <div>
-        <MaterialEditor />
-      </div>
+      <>
+        {error && <p>Что-то пошло не так.</p>}
+        {isLoading && <div>Loading...</div>}
+        <MaterialEditor
+          onSubmit={this.addMaterial}
+          // isSubmitting={isLoading} // не нужен, если через Formik
+        />
+        {isLoading ? (
+          'Загружаем материалы'
+        ) : (
+          <MaterialList
+            items={materials}
+            onDelete={this.deleteMaterial}
+            onUpdate={this.updateMaterial}
+          />
+        )}
+      </>
     );
   }
 }
