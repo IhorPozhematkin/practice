@@ -287,91 +287,91 @@
 //   }
 // }
 
-import { Component } from 'react';
-import { MaterialEditor } from 'components/MaterialEditor/MaterialEditor';
-import * as API from 'helpers/api';
-import { MaterialList } from 'components/MaterialList/MaterialList';
+// import { Component } from 'react';
+// import { MaterialEditor } from 'components/MaterialEditor/MaterialEditor';
+// import * as API from 'helpers/api';
+// import { MaterialList } from 'components/MaterialList/MaterialList';
 
-export default class App extends Component {
-  state = {
-    materials: [],
-    isLoading: false,
-    error: false,
-  };
-  async componentDidMount() {
-    try {
-      this.setState({ isLoading: true });
-      const materials = await API.getMaterials();
-      this.setState({ materials, isLoading: false });
-    } catch (error) {
-      this.setState({ error: true, isLoading: false });
-      console.log(error);
-    }
-  }
+// export default class App extends Component {
+//   state = {
+//     materials: [],
+//     isLoading: false,
+//     error: false,
+//   };
+//   async componentDidMount() {
+//     try {
+//       this.setState({ isLoading: true });
+//       const materials = await API.getMaterials();
+//       this.setState({ materials, isLoading: false });
+//     } catch (error) {
+//       this.setState({ error: true, isLoading: false });
+//       console.log(error);
+//     }
+//   }
 
-  addMaterial = async values => {
-    try {
-      // this.setState({ isLoading: true }); Formik сам обрабатыает
-      const material = await API.addMaterial(values);
-      this.setState(state => ({
-        materials: [...state.materials, material],
-      }));
-    } catch (error) {
-      console.log(error);
-    }
-    // finally {
-    //   this.setState({ isLoading: false });
-    // }
-  };
+//   addMaterial = async values => {
+//     try {
+//       // this.setState({ isLoading: true }); Formik сам обрабатыает
+//       const material = await API.addMaterial(values);
+//       this.setState(state => ({
+//         materials: [...state.materials, material],
+//       }));
+//     } catch (error) {
+//       console.log(error);
+//     }
+//     // finally {
+//     //   this.setState({ isLoading: false });
+//     // }
+//   };
 
-  updateMaterial = async fields => {
-    try {
-      const updatedMaterial = await API.updateMaterial(fields);
-      this.setState(state => ({
-        materials: state.materials.map(material =>
-          material.id === fields.id ? updatedMaterial : material
-        ),
-      }));
-    } catch (error) {
-      this.setState({ error: true });
-      console.log(error);
-    }
-  };
+//   updateMaterial = async fields => {
+//     try {
+//       const updatedMaterial = await API.updateMaterial(fields);
+//       this.setState(state => ({
+//         materials: state.materials.map(material =>
+//           material.id === fields.id ? updatedMaterial : material
+//         ),
+//       }));
+//     } catch (error) {
+//       this.setState({ error: true });
+//       console.log(error);
+//     }
+//   };
 
-  deleteMaterial = async id => {
-    try {
-      await API.deleteMaterial(id);
-      this.setState(state => ({
-        materials: state.materials.filter(material => material.id !== id),
-      }));
-    } catch (error) {
-      this.setState({ error: true });
-      console.log(error);
-    }
-  };
-  render() {
-    const { isLoading, materials, error } = this.state;
-    return (
-      <>
-        {error && <p>Что-то пошло не так.</p>}
-        {isLoading && <div>Loading...</div>}
-        <MaterialEditor
-          onSubmit={this.addMaterial}
-          // isSubmitting={isLoading} // не нужен, если через Formik
-        />
-        {isLoading ? (
-          'Загружаем материалы'
-        ) : (
-          <MaterialList
-            items={materials}
-            onDelete={this.deleteMaterial}
-            onUpdate={this.updateMaterial}
-          />
-        )}
-      </>
-    );
-  }
-}
+//   deleteMaterial = async id => {
+//     try {
+//       await API.deleteMaterial(id);
+//       this.setState(state => ({
+//         materials: state.materials.filter(material => material.id !== id),
+//       }));
+//     } catch (error) {
+//       this.setState({ error: true });
+//       console.log(error);
+//     }
+//   };
+//   render() {
+//     const { isLoading, materials, error } = this.state;
+//     return (
+//       <>
+//         {error && <p>Что-то пошло не так.</p>}
+//         {isLoading && <div>Loading...</div>}
+//         <MaterialEditor
+//           onSubmit={this.addMaterial}
+//           // isSubmitting={isLoading} // не нужен, если через Formik
+//         />
+//         {isLoading ? (
+//           'Загружаем материалы'
+//         ) : (
+//           <MaterialList
+//             items={materials}
+//             onDelete={this.deleteMaterial}
+//             onUpdate={this.updateMaterial}
+//           />
+//         )}
+//       </>
+//     );
+//   }
+// }
 
 // import { Component } from 'react';
 
@@ -491,3 +491,26 @@ export default class App extends Component {
 //     </div>
 //   );
 // }
+
+import { Route, Routes } from 'react-router-dom';
+import Home from 'pages/Home';
+import Dogs from 'pages/Dogs';
+import DogDetails from 'pages/DogDetails';
+import Layout from 'components/Layout/Layout';
+import Gallery from 'components/Gallery/Gallery';
+import Subbreads from 'components/Subbbreads/Subbreads';
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="dogs/" element={<Dogs />} />
+        <Route path="dogs/:dogId" element={<DogDetails />}>
+          <Route path="subbreeds" element={<Subbreads />} />
+          <Route path="gallery" element={<Gallery />} />
+        </Route>
+      </Route>
+    </Routes>
+  );
+}
