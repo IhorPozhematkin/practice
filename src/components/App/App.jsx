@@ -493,12 +493,26 @@
 // }
 
 import { Route, Routes } from 'react-router-dom';
-import Home from 'pages/Home';
-import Dogs from 'pages/Dogs';
-import DogDetails from 'pages/DogDetails';
+// import Home from 'pages/Home';
+// import Dogs from 'pages/Dogs';
+// import DogDetails from 'pages/DogDetails';
 import Layout from 'components/Layout/Layout';
-import Gallery from 'components/Gallery/Gallery';
-import Subbreads from 'components/Subbbreads/Subbreads';
+// import Gallery from 'components/Gallery/Gallery';
+// import Subbreads from 'components/Subbbreads/Subbreads';
+import { lazy } from 'react';
+
+const Home = lazy(() => import('../../pages/Home'));
+const Dogs = lazy(() => import('../../pages/Dogs'));
+const DogDetails = lazy(() => import('../../pages/DogDetails'));
+const Gallery = lazy(() => import('../../components/Gallery/Gallery'));
+// const Subbreads = lazy(() => import('../../components/Subbreads/Subbreads'));
+
+const Subbreads = lazy(() =>
+  import('../../components/Subbreads/Subbreads').then(module => ({
+    module,
+    default: module.Subbreads,
+  }))
+);
 
 export default function App() {
   return (

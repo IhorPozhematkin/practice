@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 export default function Layout() {
@@ -8,7 +9,9 @@ export default function Layout() {
         <NavLink to="/dogs">Collection</NavLink>
       </nav>
       <main>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );
