@@ -2,7 +2,7 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Dogs() {
-  const [dogs, setDogs] = useState(['dog-1', 'dog-2', 'dog-3']);
+  const [dogs] = useState(['dog-1', 'dog-2', 'dog-3']);
   const [searchParams, setSearchParams] = useSearchParams();
   const dogId = searchParams.get('dogId') ?? '';
   const location = useLocation();

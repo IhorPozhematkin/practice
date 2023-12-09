@@ -14,3 +14,10 @@ https://github.com/streamich/react-use
 https://github.com/cookpete/react-player
 https://www.npmjs.com/package/react-infinite-scroller
 https://mockapi.io/
+https://tailwindcss.com/
+https://www.npmjs.com/package/react-responsive
+https://redux-toolkit.js.org
+https://mobx.js.org
+https://www.apollographql.com/docs/react
+https://recoiljs.org
+https://hookstate.js.org
