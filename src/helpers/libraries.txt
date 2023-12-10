@@ -21,3 +21,4 @@ https://mobx.js.org
 https://www.apollographql.com/docs/react
 https://recoiljs.org
 https://hookstate.js.org
+https://www.npmjs.com/package/redux-persist
