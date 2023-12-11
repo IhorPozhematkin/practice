@@ -532,17 +532,34 @@
 //   );
 // }
 
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Layout from 'components/Layout/Layout';
-import LoginPage from 'pages/LoginPage';
+// import { Routes, Route, Navigate } from 'react-router-dom';
+// import Layout from 'components/Layout/Layout';
+// import LoginPage from 'pages/LoginPage';
+// import DashboardPage from 'pages/DashboardPage';
+
+// export default function App() {
+//   return (
+//     <Routes>
+//       <Route path="/" element={<Layout />}>
+//         <Route path="login" element={<LoginPage />} />
+//         <Route path="dashboard" element={<DashboardPage />} />
+//         <Route path="*" element={<Navigate to="/" replace />} />
+//       </Route>
+//     </Routes>
+//   );
+// }
+
+import { useSelector, useDispatch } from 'react-redux';
+import { update, getClickValue } from './../../redux/clickSlice';
 
 export default function App() {
+  const dispatch = useDispatch();
+  const numberOfClicks = useSelector(getClickValue);
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route path="login" element={<LoginPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Route>
-    </Routes>
+    <>
+      <button type="button" onClick={() => dispatch(update(5))}>
+        Number of clicks: {numberOfClicks}
+      </button>
+    </>
   );
 }
